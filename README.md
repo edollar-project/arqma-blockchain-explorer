@@ -1,4 +1,4 @@
-# Onion Arqma Blockchain Explorer
+# EDL Blockchain Explorer
 
 Currently available Arqma blockchain explorers have several limitations which are of 
 special importance to privacy-oriented users:
@@ -8,23 +8,22 @@ special importance to privacy-oriented users:
  - track users activates through google analytics,
  - are closed sourced,
  - are not available as hidden services,
- - do not support Loki testnet nor stagenet networks,
+ - do not support testnet nor stagenet networks,
  - have limited JSON API.
 
 
-In this example, these limitations are addressed by development of
-an Onion Loki Blockchain Explorer. The example not only shows how to use 
-Loki C++ libraries, but also demonstrates how to use:
+In this release, based upon Onion Loki Blockchain Explorer, 
+these limitations are addressedas follows:
 
  - [crow](https://github.com/ipkn/crow) - C++ micro web framework
  - [mstch](https://github.com/no1msd/mstch) - C++ {{mustache}} templates
  - [json](https://github.com/nlohmann/json) - JSON for Modern C++
  - [fmt](https://github.com/fmtlib/fmt) - Small, safe and fast string formatting library
 
-## Onion Arqma Blockchain Explorer features
+## EDL Blockchain Explorer features
 
 =======
-The key features of the Onion Arqma Blockchain Explorer are:
+The key features of the EDL Blockchain Explorer are:
 
  - no cookies, no web analytics trackers, no images,
  - by default no JavaScript, but can be enabled for client side decoding and proving transactions,
@@ -33,12 +32,12 @@ The key features of the Onion Arqma Blockchain Explorer are:
  - showing encrypted payments ID,
  - showing ring signatures,
  - showing transaction extra field,
- - showing public components of Loki addresses,
- - decoding which outputs and mixins belong to the given Loki address and viewkey,
- - can prove that you send Loki to someone,
+ - showing public components of EDL addresses,
+ - decoding which outputs and mixins belong to the given EDL address and viewkey,
+ - can prove that you send EDL to someone,
  - detailed information about mixins, such as, mixins' age, timescale, mixin of mixins,
  - showing number of amount output indices,
- - support Loki testnet, stagenet network,
+ - support EDL testnet, stagenet network,
  - tx checker and pusher for online pushing of transactions,
  - estimate possible spendings based on address and viewkey,
  - can provide total amount of all miner fees,
@@ -48,7 +47,7 @@ The key features of the Onion Arqma Blockchain Explorer are:
 
 ## Development branch
 
-Current development branch:
+This is a fork of the following development branch:
 
  - https://github.com/moneroexamples/onion-monero-blockchain-explorer/tree/devel
 
@@ -56,12 +55,12 @@ Current development branch:
 
 ## Compilation on Ubuntu 16.04
 
-##### Compile latest Arqma development version
+##### Compile latest EDL development version
 
-Download and compile recent Arqma into your home folder:
+Download and compile recent EDL into your home folder:
 
 ```bash
-# first install Loki dependecines
+# first install EDL dependecines
 sudo apt update
 
 sudo apt install git build-essential cmake libboost-all-dev miniupnpc libunbound-dev graphviz doxygen libunwind8-dev pkg-config libssl-dev libcurl4-openssl-dev libgtest-dev libreadline-dev libzmq3-dev libsodium-dev libpcsclite-dev
@@ -69,16 +68,16 @@ sudo apt install git build-essential cmake libboost-all-dev miniupnpc libunbound
 # go to home folder
 cd ~
 
-git clone --recursive https://github.com/arqma/arqma
+git clone --recursive https://github.com/edollar-project
 
-cd arqma/
+cd edollar-project/
 
 make
 ```
 
 ##### Compile and run the explorer
 
-Once the Arqma is compiles, the explorer can be downloaded and compiled
+Once the EDL compiles, the explorer can be downloaded and compiled
 as follows:
 
 ```bash
@@ -86,10 +85,10 @@ as follows:
 cd ~
 
 # download the source code
-git clone https://github.com/malbit/arqma-blockchain-explorer.git
+git clone https://github.com/edollar-project/edollar-blockchain-explorer.git
 
 # enter the downloaded sourced code folder
-cd arqma-blockchain-explorer
+cd edollar-blockchain-explorer
 
 # make a build folder and enter it
 mkdir build && cd build
@@ -97,20 +96,12 @@ mkdir build && cd build
 # create the makefile
 cmake ..
 
-# alternatively can use: cmake -DARQMA_DIR=/path/to/arqma ..
-# if loki is not in ~/arqma
-#
-# also can build with ASAN (sanitizers), for example
-# cmake -DSANITIZE_ADDRESS=On ..
-
-# compile
-make
-```
-
 When compilation finishes executable `arqblocks` should be created. Before running
 please make sure that  `~/Downloads` folder exists and is writable. 
 Time zone library that explorer is using, puts there 
 its database of time zone offsets
+
+***********
 
 To run it:
 ```
