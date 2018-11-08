@@ -100,8 +100,6 @@ please make sure that  `~/Downloads` folder exists and is writable.
 Time zone library that explorer is using, puts there 
 its database of time zone offsets
 
-***********
-
 To run it:
 ```
 ./edlblocks
