@@ -80,7 +80,7 @@ Once the EDL compiles, the explorer can be downloaded and compiled
 as follows:
 
 ```bash
-# go to home folder if still in ~/arqma
+# go to home folder if still in ~/edollar-project
 cd ~
 
 # download the source code
@@ -95,7 +95,7 @@ mkdir build && cd build
 # create the makefile
 cmake ..
 
-When compilation finishes executable `arqblocks` should be created. Before running
+When compilation finishes executable `edlblocks` should be created. Before running
 please make sure that  `~/Downloads` folder exists and is writable. 
 Time zone library that explorer is using, puts there 
 its database of time zone offsets
@@ -104,15 +104,15 @@ its database of time zone offsets
 
 To run it:
 ```
-./arqblocks
+./edlblocks
 ```
 
-By default it will look for blockchain in its default location i.e., `~/.arqma/lmdb`.
+By default it will look for blockchain in its default location i.e., `~/.edollar-project/lmdb`.
 You can use `--bc-path` option if its in different location. 
 Example output:
 
 ```bash
-$ ./arqblocks
+$ ./edlblocks
 2016-May-28 10:04:49.160280 Blockchain initialized. last block: 1056761, d0.h0.m12.s47 time ago, current difficulty: 1517857750
 (2016-05-28 02:04:49) [INFO    ] Crow/0.1 server is running, local port 8081
 ```
@@ -122,7 +122,7 @@ Go to your browser: http://127.0.0.1:8081
 ## The explorer's command line options
 
 ```
-arqblocks, Arqma Blockchain Explorer:
+edlblocks, eDollar Blockchain Explorer:
   -h [ --help ] [=arg(=1)] (=0)         produce help message
   -t [ --testnet ] [=arg(=1)] (=0)      use testnet blockchain
   -s [ --stagenet ] [=arg(=1)] (=0)     use stagenet blockchain
@@ -146,7 +146,7 @@ arqblocks, Arqma Blockchain Explorer:
                                         enable users to have the index page on
                                         autorefresh
   --enable-emission-monitor [=arg(=1)] (=0)
-                                        enable Loki total emission monitoring
+                                        enable EDL total emission monitoring
                                         thread
   -p [ --port ] arg (=8081)             default explorer port
   --testnet-url arg                     you can specify testnet url, if you run
@@ -165,45 +165,45 @@ arqblocks, Arqma Blockchain Explorer:
   --mempool-refresh-time arg (=5)       time, in seconds, for each refresh of
                                         mempool state
   -b [ --bc-path ] arg                  path to lmdb folder of the blockchain, 
-                                        e.g., ~/.arqma/lmdb
+                                        e.g., ~/.edollar-project/lmdb
   --ssl-crt-file arg                    path to crt file for ssl (https) 
                                         functionality
   --ssl-key-file arg                    path to key file for ssl (https)
                                         functionality
   -d [ --daemon-url ] arg (=http:://127.0.0.1:19994)
-                                        Loki daemon url
+                                        EDL daemon url
 ```
 
 Example usage, defined as bash aliases.
 
 ```bash
 # for mainnet explorer
-alias arqblocksmainnet='~/arqma-blockchain-explorer/build/arqblocks    --port 8081 --testnet-url "http://139.162.32.245:8082" --enable-pusher --enable-emission-monitor'
+alias edlblocksmainnet='~/eDollar-Project-blockchain-explorer/build/edlblocks    --port 8081 --testnet-url "http://139.162.32.245:8082" --enable-pusher --enable-emission-monitor'
 
 # for testnet explorer
-alias arqblockstestnet='~/arqma-blockchain-explorer/build/arqblocks -t --port 8082 --mainnet-url "http://139.162.32.245:8081" --enable-pusher --enable-emission-monitor'
+alias edlblockstestnet='~/eDollar-Project-blockchain-explorer/build/edlblocks -t --port 8082 --mainnet-url "http://139.162.32.245:8081" --enable-pusher --enable-emission-monitor'
 ```
 
 These are aliases similar to those used for http://139.162.32.245:8081/ and http://139.162.32.245:8082/, respectively.
 
-## Enable Arqma emission 
+## Enable eDollar-Project emission 
 
-Obtaining current Arqma emission amount is not straight forward. Thus, by default it is 
+Obtaining current eDollar-Project emission amount is not straight forward. Thus, by default it is 
 disabled. To enable it use `--enable-emission-monitor` flag, e.g., 
 
 
 ```bash
-arqblocks --enable-emission-monitor 
+edlblocks --enable-emission-monitor 
 ```
 
 This flag will enable emission monitoring thread. When started, the thread
  will initially scan the entire blockchain, and calculate the cumulative emission based on each block.
 Since it is a separate thread, the explorer will work as usual during this time. 
 Every 10000 blocks, the thread will save current emission in a file, by default, 
- in `~/.arqma/lmdb/emission_amount.txt`. For testnet or stagenet networks, 
- it is `~/.arqma/testnet/lmdb/emission_amount.txt` or `~/.arqma/stagenet/lmdb/emission_amount.txt`. This file is used so that we don't
+ in `~/.edollar-project/lmdb/emission_amount.txt`. For testnet or stagenet networks, 
+ it is `~/.edollar-project/testnet/lmdb/emission_amount.txt` or `~/.edollar-project/stagenet/lmdb/emission_amount.txt`. This file is used so that we don't
  need to rescan entire blockchain whenever the explorer is restarted. When the 
- explorer restarts, the thread will first check if `~/.arqma/lmdb/emission_amount.txt`
+ explorer restarts, the thread will first check if `~/.edollar-project/lmdb/emission_amount.txt`
  is present, read its values, and continue from there if possible. Subsequently, only the initial
  use of the tread is time consuming. Once the thread scans the entire blockchain, it updates
  the emission amount using new blocks as they come. Since the explorer writes this file, there can
@@ -217,10 +217,10 @@ Every 10000 blocks, the thread will save current emission in a file, by default,
  displayed on the front page, e.g., :
 
 ```
-Arqma emission (fees) is 14485540.430 (52545.373) as of 1313448 block
+eDollar emission (fees) is 14485540.430 (52545.373) as of 1313448 block
 ```
 
-The values given, can be checked using Loki daemon's  `print_coinbase_tx_sum` command. 
+The values given, can be checked using EDL daemon's  `print_coinbase_tx_sum` command. 
 For example, for the above example: `print_coinbase_tx_sum 0 1313449`.
 
 To disable the monitor, simply restart the explorer without `--enable-emission-monitor` flag.
@@ -231,7 +231,7 @@ By default, decoding and proving tx's outputs are done on the server side. To do
 (private view and tx keys are not send to the server) JavaScript-based decoding can be enabled:
 
 ```
-arqblocks --enable-js
+edlblocks --enable-js
 ```
 
 ## Enable SSL (https)
@@ -247,10 +247,10 @@ openssl req -new -key server.key -out server.csr
 openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 ```
 
-Having the `crt` and `key` files, run `lokblocks` in the following way:
+Having the `crt` and `key` files, run `edlblocks` in the following way:
 
 ```bash
-./arqblocks --ssl-crt-file=/tmp/server.crt --ssl-key-file=/tmp/server.key 
+./edlblocks --ssl-crt-file=/tmp/server.crt --ssl-key-file=/tmp/server.key 
 ```
 
 Note: Because we generated our own certificate, modern browsers will complain
@@ -263,7 +263,7 @@ The explorer has JSON api. For the API, it uses conventions defined by [JSend](h
 By default the api is disabled. To enable it, use `--enable-json-api` flag, e.g.,
 
 ```
-./arqblocks --enable-json-api
+./edlblocks --enable-json-api
 ```
 
 #### api/transaction/<tx_hash>
@@ -318,8 +318,8 @@ Partial results shown:
     "tx_hash": "6093260dbe79fd6277694d14789dc8718f1bd54457df8bab338c2efa3bb0f03d",
     "tx_size": 13323,
     "tx_version": 2,
-    "lok_inputs": 0,
-    "lok_outputs": 0
+    "edl_inputs": 0,
+    "edl_outputs": 0
   },
   "status": "success"
 }
@@ -417,8 +417,8 @@ Partial results shown:
         "tx_hash": "3ff71b65bec34c9261e01a856e6a03594cf0472acf6b77db3f17ebd18eaa30bf",
         "tx_size": 95,
         "tx_version": 2,
-        "lok_inputs": 0,
-        "lok_outputs": 8025365394426
+        "edl_inputs": 0,
+        "edl_outputs": 8025365394426
       }
     ]
   },
@@ -456,8 +456,8 @@ Partial results shown:
         "tx_hash": "9f3374f8ac67febaab153eab297937a3d0d2c706601e496bf5028146da0c9aef",
         "tx_size": 13291,
         "tx_version": 2,
-        "lok_inputs": 0,
-        "lok_outputs": 0
+        "edl_inputs": 0,
+        "edl_outputs": 0
       }
     ],
     "txs_no": 7
@@ -509,8 +509,8 @@ Partial results shown:
         "tx_hash": "479ba432f5c88736b438dd4446a11a13046a752d469f7828151f5c5b86be4e9a",
         "tx_size": 95,
         "tx_version": 2,
-        "lok_inputs": 0,
-        "lok_outputs": 7992697599717
+        "edl_inputs": 0,
+        "edl_outputs": 7992697599717
       }
     ]
   },
@@ -560,7 +560,7 @@ curl  -w "\n" -X GET "http://127.0.0.1:8081/api/outputs?txhash=17049bc5f2d9fbca1
 
 Proving transfer:
 
-We use recipient's address (i.e. not our address from which we sent lok to recipient).
+We use recipient's address (i.e. not our address from which we sent edl to recipient).
 For the viewkey, we use `tx_private_key` (although the GET variable is still called `viewkey`) that we obtained by sending this txs. 
 
 ```bash
@@ -719,7 +719,7 @@ curl  -w "\n" -X GET "http://127.0.0.1:8081/api/version"
     "git_branch_name": "master",
     "last_git_commit_date": "2017-07-25",
     "last_git_commit_hash": "a549f25",
-    "arqma_version_full": "0.10.3.1-ab594cfe"
+    "eDollar-project_version_full": "0.10.3.1-ab594cfe"
   },
   "status": "success"
 }
@@ -736,7 +736,7 @@ var api_minor = response.data.api & 0xffff;
 
 #### api/rawblock/<block_number|block_hash>
 
-Return raw json block data, as represented in arqma.
+Return raw json block data, as represented in eDollar-Project.
 
 ```bash
 curl  -w "\n" -X GET "http://139.162.32.245:8081/api/rawblock/1293257"
@@ -746,7 +746,7 @@ Example result not shown.
 
 #### api/rawtransaction/<tx_hash>
 
-Return raw json tx data, as represented in Arqma.
+Return raw json tx data, as represented in eDollar-Project.
 
 ```bash
 curl  -w "\n" -X GET "http://139.162.32.245:8081/api/rawtransaction/6093260dbe79fd6277694d14789dc8718f1bd54457df8bab338c2efa3bb0f03d"
