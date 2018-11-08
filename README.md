@@ -101,9 +101,8 @@ Time zone library that explorer is using, puts there
 its database of time zone offsets
 
 To run it:
-```
+
 ./edlblocks
-```
 
 By default it will look for blockchain in its default location i.e., `~/.edollar-project/lmdb`.
 You can use `--bc-path` option if its in different location. 
