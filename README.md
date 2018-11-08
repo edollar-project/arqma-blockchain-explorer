@@ -1,16 +1,15 @@
-# EDL Blockchain Explorer
+# eDollar (EDL) Blockchain Explorer
 
-Currently available Arqma blockchain explorers have several limitations which are of 
+Currently available CN blockchain explorers have several limitations which are of 
 special importance to privacy-oriented users:
 
  - they use JavaScript,
  - have images which might be used for [cookieless tracking](http://lucb1e.com/rp/cookielesscookies/),
  - track users activates through google analytics,
- - are closed sourced,
+ - are closed source,
  - are not available as hidden services,
  - do not support testnet nor stagenet networks,
  - have limited JSON API.
-
 
 In this release, based upon Onion Loki Blockchain Explorer, 
 these limitations are addressedas follows:
@@ -19,6 +18,7 @@ these limitations are addressedas follows:
  - [mstch](https://github.com/no1msd/mstch) - C++ {{mustache}} templates
  - [json](https://github.com/nlohmann/json) - JSON for Modern C++
  - [fmt](https://github.com/fmtlib/fmt) - Small, safe and fast string formatting library
+
 
 ## EDL Blockchain Explorer features
 
@@ -50,7 +50,6 @@ The key features of the EDL Blockchain Explorer are:
 This is a fork of the following development branch:
 
  - https://github.com/moneroexamples/onion-monero-blockchain-explorer/tree/devel
-
 
 
 ## Compilation on Ubuntu 16.04
