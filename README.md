@@ -69,7 +69,7 @@ cd ~
 
 git clone --recursive https://github.com/edollar-project/edollar
 
-cd edollar-project/
+cd edollar
 
 make
 ```
