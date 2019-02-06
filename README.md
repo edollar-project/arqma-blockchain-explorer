@@ -59,7 +59,7 @@ This is a fork of the following development branch:
 Download and compile recent EDL into your home folder:
 
 ```bash
-# first install EDL dependecines
+# first install EDL dependencies
 sudo apt update
 
 sudo apt install git build-essential cmake libboost-all-dev miniupnpc libunbound-dev graphviz doxygen libunwind8-dev pkg-config libssl-dev libcurl4-openssl-dev libgtest-dev libreadline-dev libzmq3-dev libsodium-dev libpcsclite-dev
